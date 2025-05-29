@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BigWin777 | Daily Bonus & Betting</title>
+  <title>BigWin777 - Play & Win Daily!</title>
   <style>
     * {
       margin: 0;
@@ -12,110 +12,146 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #1a1a1a, #000);
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       text-align: center;
-      min-height: 100vh;
-      background-image: linear-gradient(145deg, #1e1e1e, #111);
+      padding: 20px 10px;
     }
 
-    .mobile-banner {
-      display: none;
+    .banner-container {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .banner {
       width: 100%;
-      max-width: 500px;
+      max-width: 480px;
+      border-radius: 16px;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 25px 4px rgba(255, 0, 70, 0.4),
+                  0 0 10px rgba(255, 217, 0, 0.4),
+                  0 0 5px rgba(255, 0, 200, 0.2);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       color: #ffd700;
-      margin: 0.8em 0 0.3em;
+      text-shadow: 0 0 10px #ff0000, 0 0 4px #fff;
+      animation: flicker 2.5s infinite;
+      margin-bottom: 10px;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
     p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 20px 1.2em;
+      font-size: 1.05rem;
+      color: #ddd;
+      margin-bottom: 15px;
     }
 
     .bonus {
-      font-size: 1.4rem;
+      background: #2c2c2c;
+      border: 2px dashed #00ffcc;
+      padding: 14px;
+      margin: 20px auto;
+      max-width: 400px;
+      border-radius: 10px;
       color: #00ffcc;
-      margin-bottom: 2em;
+      font-weight: bold;
+      font-size: 1.1rem;
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 30px;
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #00ffcc; }
+      to { box-shadow: 0 0 20px #00ffcc; }
+    }
+
+    a.btn {
+      display: block;
+      margin: 15px auto;
+      width: 90%;
+      max-width: 360px;
+      padding: 15px 25px;
       font-size: 1rem;
       font-weight: bold;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
       text-decoration: none;
       color: #fff;
-      background: linear-gradient(135deg, #ff5733, #ff8c33);
-      box-shadow: 0 4px 15px rgba(255, 87, 51, 0.6);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      position: relative;
-      animation: pulse 2s infinite;
+      border-radius: 50px;
+      transition: all 0.3s ease;
     }
 
-    .btn:hover {
-      animation: shake 0.5s;
-      animation-iteration-count: 1;
-      box-shadow: 0 0 20px rgba(255, 140, 51, 0.9);
+    /* 🎯 Individual Animated Buttons */
+
+    .btn-telegram {
+      background: linear-gradient(to right, #0ebeff, #03dac6);
+      animation: bounceBtn 2s infinite;
+      box-shadow: 0 0 12px rgba(3, 218, 198, 0.6);
     }
 
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      50% { transform: translateX(5px); }
-      75% { transform: translateX(-5px); }
-      100% { transform: translateX(0); }
+    @keyframes bounceBtn {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
+    .btn-viber {
+      background: linear-gradient(to right, #7f00ff, #e100ff);
+      animation: wiggle 2s infinite;
+      box-shadow: 0 0 15px rgba(255, 0, 200, 0.4);
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1deg); }
+      50% { transform: rotate(-1deg); }
+      75% { transform: rotate(1deg); }
+    }
+
+    .btn-learn {
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
+      animation: pulseBtn 2.5s infinite;
+      box-shadow: 0 0 14px rgba(255, 65, 108, 0.6);
+    }
+
+    @keyframes pulseBtn {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
     }
 
     footer {
-      margin-top: 3em;
-      font-size: 0.85rem;
+      margin-top: 25px;
+      font-size: 0.8rem;
       color: #888;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-banner {
-        display: block;
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 📱 Banner Image for Mobile -->
-  <img src="done.gif" alt="BigWin777 Mobile Banner" class="mobile-banner" />
+  <!-- 🚀 Animated Banner -->
+  <div class="banner-container">
+    <img src="done.gif" alt="BigWin777 Mobile Banner" class="banner" />
+  </div>
 
-  <h1>🃏ရှမ်းကိုးမီး စလော့🎰</h1>
-  <p>✅✅ 100% ယုံကြည်စိတ်ချစွာ ဆော့ကစားနိုင်ပြီး 👍 - ⚡️ရှမ်းကိုးမီး ၊ ဘူကြီး  စလော့ ၊ ကာစီနို ဂိမ်း အစုံအလင်⚡️
-  ⌛️ 24/7 ဝန်ဆောင်မှုနဲ့ အမြဲအသင့်ရှိနေပါတယ်! </p>
-  
-  <a href="https://t.me/kw99cs" class="btn">💬 တယ်လီဂရမ် သို့ ဆက်သွယ်မယ်</a>
-  <a href="viber://chat?number=+959953108085" class="btn">💬 ဗိုက်ဗာ မှာအကောင့်ဖွင့်မယ်</a>
-  <a href="https://beacons.ai/kwin99" class="btn">📖 အသေးစိတ်လေ့လာမယ်</a>
+  <h1>♕ KWIN99 ♠ ဂိမ်ခန်းရှယ်</h1>
 
-  <div class="bonus">🔥 နေ့စဥ် အပို လက်ဆောင် 🎁 3ကြိမ် ရယူနိုင်မည့် အခွင့်အရေး ➲ ⊏ 15%↦10%↦5% ⊐ !</div>
+  <p>📱 ခုပဲ ဆော့လိုက်ပါ - ရှမ်းကိုးမီး ၊ ဘူကြီး ၊ စလော့ 
+   100% ယုံကြည်စိတ်ချ ✦ ငွေသွင်းငွေထုတ် မြန်ဆန် ✦ 𝟮𝟰/𝟳 ဝန်ဆောင်မှု</p>
 
-  <footer>© 2025 KWIN99 • 18+ Only • Gamble Responsibly</footer>
+  <a href="https://t.me/kw99cs" class="btn btn-telegram">💬 တယ်လီဂရမ် မှ အကောင့်ဖွင့်မယ်</a>
+  <a href="viber://chat?number=+959953108085" class="btn btn-viber">📲 ဗိုက်ဗာ မှ ဆက်သွယ်မယ် </a>
+  <a href="https://beacons.ai/kwin99" class="btn btn-learn">📖 အသေးစိတ်ကြည့်မယ်</a>
+
+  <div class="bonus">🎁 နေ့စဉ် Bonus 3 ကြိမ် ➠ 15% ➠ 10% ➠ 5%</div>
+
+  <footer>© 2025 BigWin777 • 18+ Only • Gamble Responsibly</footer>
 </body>
 </html>
