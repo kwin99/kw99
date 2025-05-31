@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KWIN99 -ရှမ်း/စလော့  !</title>
 
-  <!-- Google Fonts - Orbitron for heading, Roboto for body -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- REMOVED: Google Fonts Link Tags -->
 
 
   <!-- ✅ Meta Pixel Code -->
@@ -33,10 +30,9 @@
   <style>
     /* --- CSS Variables for easier management (even inline) --- */
     :root {
-        --bg-base-color: #000;
-        --bg-rain-color-1: rgba(255, 255, 255, 0.1);
-        --bg-rain-color-2: rgba(255, 255, 255, 0.15);
-        --bg-rain-color-3: rgba(255, 255, 255, 0.2);
+        /* Background colors - simplified */
+        --bg-gradient-start: #1a1a1a; /* Reverted to simpler gradient */
+        --bg-gradient-end: #000;
 
         --primary-color-text: #ffd700;
         --secondary-color-text: #ff0000;
@@ -57,9 +53,10 @@
         --text-medium: #ddd;
         --text-dark: #888;
 
-        --heading-font: 'Orbitron', sans-serif;
-        --body-font: 'Roboto', sans-serif;
-        --fallback-font: 'Segoe UI', sans-serif;
+        /* Font Variables - Adjusted for system fonts */
+        --heading-font: 'Segoe UI', sans-serif; /* Primary fallback */
+        --body-font: 'Segoe UI', sans-serif; /* Primary fallback */
+        --fallback-font: sans-serif; /* Generic fallback */
     }
 
     * {
@@ -69,6 +66,7 @@
     }
 
     body {
+      /* Use standard system fonts */
       font-family: var(--body-font), var(--fallback-font);
       color: var(--text-medium);
       text-align: center;
@@ -80,24 +78,13 @@
       flex-direction: column;
       justify-content: space-between;
 
-      /* --- Pure CSS Rain Background --- */
-      background-color: var(--bg-base-color);
-      background-image:
-        linear-gradient(to bottom, var(--bg-rain-color-1) 0%, transparent 20%, transparent 100%),
-        linear-gradient(to bottom, var(--bg-rain-color-2) 0%, transparent 20%, transparent 100%),
-        linear-gradient(to bottom, var(--bg-rain-color-3) 0%, transparent 20%, transparent 100%);
-      background-size: 1px 100px, 1.5px 120px, 2px 150px;
-      background-repeat: repeat-y;
-      background-position: 0 0, 50px 0, 120px 0;
-      animation: rain 10s linear infinite,
-                 rain 15s linear infinite,
-                 rain 20s linear infinite;
+      /* --- Simplified Background Gradient --- */
+      background: radial-gradient(circle at center, var(--bg-gradient-start), var(--bg-gradient-end));
+
+      /* REMOVED: Pure CSS Rain Background Properties and Animation */
     }
 
-    @keyframes rain {
-      from { background-position-y: 0; }
-      to { background-position-y: 100%; }
-    }
+    /* REMOVED: @keyframes rain */
 
 
     .container {
@@ -141,7 +128,7 @@
     }
 
     h1 {
-      font-family: var(--heading-font), var(--fallback-font);
+      font-family: var(--heading-font), var(--fallback-font); /* Use font variable */
       font-size: clamp(1.3rem, 6vw, 2.8rem);
       color: var(--primary-color-text);
       text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light);
@@ -155,12 +142,12 @@
      @keyframes pulseText {
         0% { transform: scale(1); opacity: 1; text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light); }
         50% { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 25px var(--secondary-color-text), 0 0 12px var(--text-light); }
-        100% { transform: scale(1); } /* Removed box-shadow from h1 animation */
+        100% { transform: scale(1); }
     }
 
 
     p {
-      font-family: var(--body-font), var(--fallback-font);
+      font-family: var(--body-font), var(--fallback-font); /* Use font variable */
       font-size: 1.05rem;
       color: var(--text-medium);
       margin-bottom: 15px;
@@ -258,7 +245,7 @@
     @keyframes pulsePrimary {
         0% { transform: scale(1); box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); }
         50% { transform: scale(1.03); box-shadow: 0 0 25px var(--btn-primary-shadow), 0 0 15px rgba(241, 39, 17, 0.6); }
-        100% { transform: scale(1); box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); } /* Added box-shadow back for the pulse effect */
+        100% { transform: scale(1); box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); }
     }
 
     /* Secondary Buttons */
@@ -321,7 +308,6 @@
          .btn-secondary { font-size: 1rem; }
          .bonus-section { font-size: 1rem; padding: 12px; max-width: 320px; }
     }
-
 
      /* Ensure footer is at the bottom */
      body {
