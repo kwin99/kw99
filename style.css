@@ -1,0 +1,427 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables for easy theming */
+:root {
+    --bg-base-color: #000; /* Solid black base */
+    --bg-rain-color-1: rgba(255, 255, 255, 0.1); /* Subtle white rain */
+    --bg-rain-color-2: rgba(255, 255, 255, 0.15); /* Slightly more visible white rain */
+    --bg-rain-color-3: rgba(255, 255, 255, 0.2); /* More visible white rain */
+
+    --primary-color-text: #ffd700; /* Gold/Yellow for heading text */
+    --secondary-color-text: #ff0000; /* Red for text shadow */
+    --accent-color: #00ffcc; /* Cyan for bonus section */
+
+    /* Button Specific Colors */
+    --btn-text-color: #fff; /* White text for all buttons */
+
+    /* Individual Button Gradients (using original colors for distinction) */
+    --btn-telegram-gradient: linear-gradient(to right, #0ebeff, #03dac6); /* Revert Telegram color for secondary */
+    --btn-viber-gradient: linear-gradient(to right, #7f00ff, #e100ff);
+    --btn-learn-gradient: linear-gradient(to right, #ff416c, #ff4b2b);
+
+    /* Primary Button Specific Colors (Most Attention-Gabbing) */
+    --btn-primary-start: #f12711; /* Red-Orange Start */
+    --btn-primary-end: #f5af19; /* Gold-Orange End */
+    --btn-primary-shadow: rgba(241, 39, 17, 0.8); /* Stronger shadow color (Red) */
+
+
+    --text-light: #fff;
+    --text-medium: #ddd;
+    --text-dark: #888;
+
+    /* Font Variables */
+    --heading-font: 'Orbitron', sans-serif; /* Modern techy font */
+    --body-font: 'Roboto', sans-serif; /* Clean readable font */
+    /* Fallback to Segoe UI and generic sans-serif */
+    --fallback-font: 'Segoe UI', sans-serif;
+}
+
+
+body {
+  font-family: var(--body-font), var(--fallback-font); /* Use font variable */
+  color: var(--text-medium); /* Use color variable for general body text */
+  text-align: center;
+  padding: 0; /* Remove body padding, use container/section padding */
+  line-height: 1.6; /* Improve readability */
+  overflow-x: hidden; /* Prevent horizontal scroll caused by elements */
+  min-height: 100vh; /* Ensure body takes at least full viewport height */
+  display: flex; /* Use flexbox to center content vertically if needed */
+  flex-direction: column;
+  justify-content: space-between; /* Pushes footer to the bottom if content is short */
+
+  /* --- Pure CSS Rain Background --- */
+  background-color: var(--bg-base-color); /* Solid black base */
+  background-image:
+    /* Layer 1: subtle, faster drops */
+    linear-gradient(to bottom, var(--bg-rain-color-1) 0%, transparent 20%, transparent 100%),
+    /* Layer 2: medium visibility, medium speed */
+    linear-gradient(to bottom, var(--bg-rain-color-2) 0%, transparent 20%, transparent 100%),
+    /* Layer 3: more visible, slower drops */
+    linear-gradient(to bottom, var(--bg-rain-color-3) 0%, transparent 20%, transparent 100%);
+
+  /* Define size of each rain 'streak' pattern (width height) */
+  background-size: 1px 100px, 1.5px 120px, 2px 150px;
+
+  /* Repeat the pattern vertically */
+  background-repeat: repeat-y;
+
+  /* Initial position (can vary slightly for offset) */
+  background-position: 0 0, 50px 0, 120px 0;
+
+  /* Apply animations - match duration to size height for seamless loop */
+  animation: rain 10s linear infinite,
+             rain 15s linear infinite, /* Different duration for second layer */
+             rain 20s linear infinite; /* Different duration for third layer */
+
+  /* Optional: Add different delays for more scattered effect */
+  /* animation-delay: 0s, 2s, 5s; */ /* Uncomment and adjust if desired */
+}
+
+/* Keyframes for the rain animation (moves background position vertically) */
+@keyframes rain {
+  from {
+    background-position-y: 0; /* Start at the top */
+  }
+  to {
+    /* This needs to match the background-size height for a seamless loop */
+    /* Since we have multiple sizes, animating position-y from 0 to 100% is simpler */
+    /* However, 100% might depend on element height. Animating by the pattern height is better. */
+    /* We defined sizes 100px, 120px, 150px. The animation listed second applies to second bg, etc. */
+    background-position-y: 100%; /* This works reliably with repeat-y */
+  }
+}
+
+
+.container {
+    max-width: 500px; /* Limit max width for better readability on large screens */
+    margin: 0 auto; /* Center the container */
+    padding: 20px 15px; /* Add horizontal padding */
+    flex-grow: 1; /* Allow container to grow and push footer down */
+    position: relative; /* Ensure it stacks above the body background */
+    z-index: 1; /* Ensure it stacks above the body background */
+}
+
+.hero-section {
+    margin-bottom: 40px; /* Space below the main hero content */
+}
+
+
+.banner-container {
+  position: relative;
+  margin-bottom: 30px; /* Increased space below banner */
+  overflow: hidden; /* Hide overflowing parts */
+  border-radius: 16px;
+  /* Adjusted shadows for more vibrant glow */
+  box-shadow: 0 0 35px 6px rgba(255, 0, 70, 0.7),
+              0 0 20px rgba(255, 217, 0, 0.7),
+              0 0 10px rgba(255, 0, 200, 0.5);
+  animation: float 3s ease-in-out infinite; /* Keep the float animation */
+}
+
+/* Styling for both video and fallback image within the banner container */
+.banner-container video,
+.banner-container .banner-fallback-img {
+    display: block; /* Remove extra space below */
+    width: 100%; /* Make it fill the container width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 16px; /* Ensure corners are rounded */
+    /* object-fit: cover; /* Use 'cover' if you want the video to fill and potentially crop */
+}
+
+/* Hide fallback image if video is supported and plays */
+video:not([poster]) + .banner-fallback-img {
+    display: none;
+}
+video:playing + .banner-fallback-img { /* This might not work universally */
+    display: none;
+}
+video:not([src]) + .banner-fallback-img {
+    display: block; /* Show fallback if no video source is provided */
+}
+
+
+/* Float animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); } /* Slightly increased float */
+}
+
+h1 {
+  font-family: var(--heading-font), var(--fallback-font);
+  /* --- Using clamp for responsive font size --- */
+  /* Font size will be between 1.4rem (min) and 2.8rem (max) */
+  /* It will scale fluidly based on 6% of the viewport width (6vw) */
+  font-size: clamp(1.4rem, 6vw, 2.8rem); /* Adjust min/vw if needed for single line */
+
+  color: var(--primary-color-text);
+  text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light);
+  animation: pulseText 2.5s infinite alternate ease-in-out;
+  margin-bottom: 20px;
+  padding: 0 10px; /* Increased padding slightly to give more space from edges */
+
+  /* --- Force H1 onto a single line and clip if needed --- */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text that doesn't fit */
+  text-overflow: ellipsis; /* Added ellipsis to show text is clipped */
+}
+
+@keyframes pulseText {
+    0% { transform: scale(1); opacity: 1; text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light); }
+    100% { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 25px var(--secondary-color-text), 0 0 12px var(--text-light); }
+}
+
+
+.subtitle { /* Used a class for paragraph */
+  font-size: 1.15rem; /* Slightly increased size */
+  color: var(--text-medium); /* Use variable */
+  margin-bottom: 30px; /* Increased space */
+  padding: 0 15px; /* Add some horizontal padding */
+}
+
+.bonus-section { /* Used a class for bonus */
+  background: rgba(44, 44, 44, 0.8); /* Added slight transparency */
+  border: 2px solid var(--accent-color); /* Changed dashed to solid for a cleaner look */
+  padding: 18px; /* Increased padding */
+  margin: 35px auto; /* Increased space */
+  max-width: 480px; /* Increased max-width */
+  border-radius: 12px;
+  color: var(--accent-color); /* Use variable */
+  font-weight: bold;
+  font-size: 1.25rem; /* Increased size */
+  animation: glowBorder 2s ease-in-out infinite alternate; /* New glow animation */
+  box-shadow: 0 0 10px var(--accent-color); /* Initial shadow */
+  text-shadow: 0 0 6px rgba(0, 255, 204, 0.6); /* Subtle text shadow */
+}
+
+ @keyframes glowBorder {
+    from { box-shadow: 0 0 10px var(--accent-color), 0 0 0px rgba(0, 255, 204, 0.3); }
+    to { box-shadow: 0 2px 30px var(--accent-color), 0 2px 20px rgba(0, 255, 204, 0.6); } /* More pronounced glow */
+}
+
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 18px; /* Space between buttons */
+    margin-bottom: 40px; /* Space below the button group */
+}
+
+
+a.btn {
+  display: block;
+  width: 100%; /* Take full width of the container */
+  max-width: 380px; /* Keep a max width for larger screens */
+  margin: 0 auto; /* Center the button horizontally */
+  padding: 18px 30px; /* Increased padding for larger touch area */
+  font-size: 1.1rem; /* Slightly increased font size */
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--btn-text-color); /* Use variable for consistent button text color */
+  border-radius: 50px; /* Pill shape */
+  transition: all 0.3s ease; /* Smooth transitions for hover effects */
+  text-align: center;
+  position: relative; /* Needed for pseudo-elements/effects */
+  overflow: hidden; /* Hide effects that go outside the border-radius */
+  z-index: 1; /* Ensure button content is above pseudo-elements */
+  border: none; /* Ensure no default border */
+  cursor: pointer; /* Indicate it's clickable */
+
+  /* Base animation properties - individual buttons will override */
+}
+
+/* Common Hover/Active Effects for all buttons */
+/* Subtle Shimmer Effect on Hover */
+a.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25); /* Slightly stronger white shimmer */
+    transform: skewX(-30deg); /* Angle the shimmer */
+    transition: all 0.5s ease;
+    z-index: 1; /* Below the button text */
+}
+
+a.btn:hover::before {
+    left: 100%; /* Move shimmer across */
+}
+
+/* Lift and Shadow Effect on Hover */
+a.btn:hover {
+    transform: translateY(-6px); /* Slightly more pronounced lift */
+    box-shadow: 0 14px 30px rgba(0,0,0,0.6); /* Stronger shadow on hover */
+    filter: brightness(1.2); /* Slightly more brighten on hover */
+    z-index: 2; /* Bring hovered button slightly forward */
+}
+
+/* Press Down Effect on Active (Click/Tap) */
+a.btn:active {
+    transform: translateY(0); /* Press down effect */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Reduced shadow when pressed */
+    filter: brightness(0.8); /* Slightly dim on active */
+    transition: all 0.1s ease; /* Faster transition when pressing */
+}
+
+
+/* --- Individual Button Colors and Styles --- */
+
+/* Primary Button (Most Important CTA - Telegram) */
+.btn-primary {
+    background-color: #f12711; /* Fallback background color */
+    background: linear-gradient(to right, var(--btn-primary-start), var(--btn-primary-end)); /* Vibrant Primary Gradient */
+    font-size: 1.3rem; /* Significantly larger font size */
+    padding: 22px 35px; /* More padding */
+    font-weight: 900; /* Make the font weight heavier */
+    color: var(--btn-text-color); /* Explicitly set text color */
+
+    /* --- Continuous Animation for Primary Button (Pulse) --- */
+    animation: pulsePrimary 2s infinite alternate ease-in-out;
+    box-shadow: 0 0 15px var(--btn-primary-shadow); /* Initial shadow */
+}
+
+@keyframes pulsePrimary {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); /* Start with initial shadow and no outer glow */
+    }
+    50% {
+         transform: scale(1.03); /* Slight scale */
+         box-shadow: 0 0 25px var(--btn-primary-shadow), 0 0 15px rgba(241, 39, 17, 0.6); /* Glow effect at midpoint */
+    }
+    100% {
+        transform: scale(1);
+         box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); /* End with initial shadow */
+    }
+}
+
+/* Secondary Buttons (Common styles) */
+.btn-secondary {
+     color: var(--btn-text-color); /* Explicitly set text color */
+     /* Base secondary background - will be overridden by specific classes */
+     background-color: #3a7bd5; /* Fallback */
+     background: linear-gradient(to right, #3a7bd5, #00d2ff);
+     box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4); /* Secondary shadow */
+}
+
+/* --- Individual Secondary Button Styles and Animations --- */
+
+/* Viber Button */
+.btn-viber {
+     background-color: #7f00ff; /* Fallback */
+     background: var(--btn-viber-gradient); /* Use Viber gradient */
+     box-shadow: 0 4px 15px rgba(255, 0, 200, 0.35); /* Adjusted shadow */
+     /* Subtle Rotation Animation */
+     animation: subtleWiggleRotation 2.5s infinite ease-in-out;
+}
+
+@keyframes subtleWiggleRotation {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(0.6deg); } /* Gentle tilt right */
+  50% { transform: rotate(-0.6deg); } /* Gentle tilt left */
+  75% { transform: rotate(0.6deg); } /* Gentle tilt right */
+}
+
+
+/* Learn More Button */
+.btn-learn {
+     background-color: #ff416c; /* Fallback */
+     background: var(--btn-learn-gradient); /* Use Learn More gradient */
+     box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5); /* Adjusted shadow */
+     /* Subtle Bounce Animation */
+     animation: subtleBounce 2s infinite ease-in-out;
+}
+
+@keyframes subtleBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); } /* Gentle bounce up */
+}
+
+
+footer {
+  margin-top: 50px; /* Increased space above footer */
+  padding: 20px 10px;
+  font-size: 0.85rem; /* Slightly increased size */
+  color: var(--text-dark); /* Use variable */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator line */
+}
+
+/* --- Responsive Adjustments --- */
+/* Button font sizes and padding in media queries */
+@media (max-width: 550px) {
+    .container {
+        padding: 15px 10px;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+        padding: 0 5px;
+    }
+
+    a.btn {
+        font-size: 1.05rem;
+        padding: 16px 25px;
+    }
+
+    .btn-primary {
+        font-size: 1.2rem;
+        padding: 18px 28px;
+    }
+
+    .btn-secondary {
+        font-size: 1.05rem;
+    }
+
+    .bonus-section {
+        font-size: 1.1rem;
+        padding: 15px;
+        max-width: 400px;
+    }
+
+    .cta-buttons {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .subtitle {
+        font-size: 1rem;
+    }
+
+     a.btn {
+        font-size: 1rem;
+        padding: 14px 20px;
+    }
+
+    .btn-primary {
+        font-size: 1.1rem;
+        padding: 16px 20px;
+        font-weight: bold;
+    }
+
+     .btn-secondary {
+        font-size: 1rem;
+    }
+
+    .bonus-section {
+        font-size: 1rem;
+        padding: 12px;
+        max-width: 320px;
+    }
+}
+
+/* Ensure the footer is at the bottom */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container {
+    flex-grow: 1;
+}
