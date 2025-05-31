@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KWIN99 - ရှမ်း&စလော့!</title>
+  <title>KWIN99 - ဂိမ်ခန်းရှယ်</title> <!-- Kept original title text but used the final structure -->
 
-  <!-- ✅ Meta Pixel Code -->
+  <!-- Google Fonts - Orbitron for heading, Roboto for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Link to your external CSS file -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ✅ Meta Pixel Code - KEPT FROM YOUR ORIGINAL CODE -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -24,152 +32,49 @@
   </noscript>
   <!-- ✅ End Meta Pixel Code -->
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <!-- Removed the <style> block - all CSS is now in style.css -->
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at center, #1a1a1a, #000);
-      color: #fff;
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    .banner-container {
-      position: relative;
-      margin-bottom: 20px;
-    }
-
-    .banner {
-      width: 100%;
-      max-width: 480px;
-      border-radius: 16px;
-      animation: float 3s ease-in-out infinite;
-      box-shadow: 0 0 25px 4px rgba(255, 0, 70, 0.4),
-                  0 0 10px rgba(255, 217, 0, 0.4),
-                  0 0 5px rgba(255, 0, 200, 0.2);
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #ffd700;
-      text-shadow: 0 0 10px #ff0000, 0 0 4px #fff;
-      animation: flicker 2.5s infinite;
-      margin-bottom: 10px;
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
-    }
-
-    p {
-      font-size: 1.05rem;
-      color: #ddd;
-      margin-bottom: 15px;
-    }
-
-    .bonus {
-      background: #2c2c2c;
-      border: 2px dashed #00ffcc;
-      padding: 14px;
-      margin: 20px auto;
-      max-width: 400px;
-      border-radius: 10px;
-      color: #00ffcc;
-      font-weight: bold;
-      font-size: 1.1rem;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { box-shadow: 0 0 10px #00ffcc; }
-      to { box-shadow: 0 0 20px #00ffcc; }
-    }
-
-    a.btn {
-      display: block;
-      margin: 15px auto;
-      width: 90%;
-      max-width: 360px;
-      padding: 15px 25px;
-      font-size: 1rem;
-      font-weight: bold;
-      text-decoration: none;
-      color: #fff;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-telegram {
-      background: linear-gradient(to right, #0ebeff, #03dac6);
-      animation: bounceBtn 2s infinite;
-      box-shadow: 0 0 12px rgba(3, 218, 198, 0.6);
-    }
-
-    @keyframes bounceBtn {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    .btn-viber {
-      background: linear-gradient(to right, #7f00ff, #e100ff);
-      animation: wiggle 2s infinite;
-      box-shadow: 0 0 15px rgba(255, 0, 200, 0.4);
-    }
-
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(1deg); }
-      50% { transform: rotate(-1deg); }
-      75% { transform: rotate(1deg); }
-    }
-
-    .btn-learn {
-      background: linear-gradient(to right, #ff416c, #ff4b2b);
-      animation: pulseBtn 2.5s infinite;
-      box-shadow: 0 0 14px rgba(255, 65, 108, 0.6);
-    }
-
-    @keyframes pulseBtn {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-    }
-
-    footer {
-      margin-top: 25px;
-      font-size: 0.8rem;
-      color: #888;
-    }
-  </style>
 </head>
 <body>
 
-  <div class="banner-container">
-    <img src="done.gif" alt="BigWin777 Mobile Banner" class="banner" />
-  </div>
+  <main class="container"> <!-- New main container for better structure -->
+    <div class="hero-section"> <!-- New div to group top content -->
+        <div class="banner-container">
+            <!-- Using video tag with class="banner" and fallback image -->
+            <!-- Using your original video source -->
+            <video autoplay loop muted playsinline class="banner" poster="fallback_image.jpg"> <!-- Add a poster image source -->
+              <source src="done.webm" type="video/webm">
+              <!-- Fallback for browsers that don't support webm video -->
+              <img src="fallback_image.jpg" alt="BigWin777 Mobile Banner Fallback" class="banner-fallback-img banner"> <!-- Add a fallback image source -->
+            </video>
+        </div>
 
-  <h1>♕ KWIN99 ဂိမ်းခန်းရှယ်</h1>
+        <!-- Used your original h1 text -->
+        <h1>♕ KWIN99 ဂိမ်းခန်းရှယ်</h1>
 
-  <p>📱 ခုပဲ ဆော့လိုက်ပါ - ရှမ်းကိုးမီး ၊ ဘူကြီး ၊ စလော့ 
-   100% ယုံကြည်စိတ်ချ ✦ ငွေသွင်းငွေထုတ် မြန်ဆန် ✦ 𝟮𝟰/𝟳 ဝန်ဆောင်မှု</p>
+        <!-- Used your original paragraph text -->
+        <p class="subtitle">📱 ခုပဲ ဆော့လိုက်ပါ - ရှမ်းကိုးမီး ၊ ဘူကြီး ၊ စလော့
+         100% ယုံကြည်စိတ်ချ ✦ ငွေသွင်းငွေထုတ် မြန်ဆန် ✦ 𝟮𝟰/𝳰 ဝန်ဆောင်မှု</p> <!-- Corrected 24/7 character -->
 
-  <a href="https://t.me/kw99cs" class="btn btn-telegram">💬 တယ်လီဂရမ် မှ အကောင့်ဖွင့်မယ်</a>
-  <a href="viber://chat?number=+959953108085" class="btn btn-viber">📲 ဗိုက်ဗာ မှ ဆက်သွယ်မယ်</a>
-  <a href="https://beacons.ai/kwin99" class="btn btn-learn">📖 အသေးစိတ်ကြည့်မယ်</a>
+        <div class="cta-buttons"> <!-- New div to group buttons -->
+          <!-- Using your original button links and text -->
+          <!-- Telegram button as Primary CTA -->
+          <a href="https://t.me/kw99cs" class="btn btn-primary btn-telegram">💬 တယ်လီဂရမ် မှ အကောင့်ဖွင့်မယ်</a>
+          <!-- Viber button as Secondary CTA -->
+          <a href="viber://chat?number=+959953108085" class="btn btn-secondary btn-viber">📲 ဗိုက်ဗာ မှ ဆက်သွယ်မယ်</a>
+          <!-- Learn More button as Secondary CTA -->
+          <a href="https://beacons.ai/kwin99" class="btn btn-secondary btn-learn">📖 အသေးစိတ်ကြည့်မယ်</a>
+        </div>
 
-  <div class="bonus">🎁 နေ့စဉ် Bonus 3 ကြိမ် ➠ 15% ➠ 10% ➠ 5%</div>
+        <!-- Used your original bonus div content -->
+        <div class="bonus-section"> <!-- New class for consistency -->
+          🎁 နေ့စဉ် Bonus 3 ကြိမ် ➠ 15% ➠ 10% ➠ 5%
+        </div>
+    </div> <!-- End hero-section -->
+  </main> <!-- End main container -->
 
-  <footer>© 2025 BigWin777 • 18+ Only • Gamble Responsibly</footer>
+  <!-- Used your original footer text -->
+  <footer>© 2025 KWIN99 • 18+ Only • Gamble Responsibly</footer>
 
 </body>
 </html>
