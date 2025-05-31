@@ -40,12 +40,12 @@
   <main class="container"> <!-- New main container for better structure -->
     <div class="hero-section"> <!-- New div to group top content -->
         <div class="banner-container">
-            <!-- Using video tag with class="banner" and fallback image -->
+            <!-- Using video tag with class="banner" -->
             <!-- Using your original video source -->
-            <video autoplay loop muted playsinline class="banner" poster="fallback_image.jpg"> <!-- Add a poster image source -->
+            <!-- REMOVED poster attribute and nested img tag -->
+            <video autoplay loop muted playsinline class="banner">
               <source src="done.webm" type="video/webm">
-              <!-- Fallback for browsers that don't support webm video -->
-              <img src="fallback_image.jpg" alt="BigWin777 Mobile Banner Fallback" class="banner-fallback-img banner"> <!-- Add a fallback image source -->
+              <!-- No fallback image inside the video tag anymore -->
             </video>
         </div>
 
