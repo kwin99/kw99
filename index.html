@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KWIN99 - ဂိမ်ခန်းရှယ်</title>
+  <title>KWIN99 -ရှမ်း/စလော့  !</title>
 
   <!-- Google Fonts - Orbitron for heading, Roboto for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Link to your external CSS file -->
-  <link rel="stylesheet" href="style.css">
 
-  <!-- ✅ Meta Pixel Code - KEPT FROM YOUR ORIGINAL CODE -->
+  <!-- ✅ Meta Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -32,35 +30,337 @@
   </noscript>
   <!-- ✅ End Meta Pixel Code -->
 
-  <!-- Removed the <style> block -->
+  <style>
+    /* --- CSS Variables for easier management (even inline) --- */
+    :root {
+        --bg-base-color: #000;
+        --bg-rain-color-1: rgba(255, 255, 255, 0.1);
+        --bg-rain-color-2: rgba(255, 255, 255, 0.15);
+        --bg-rain-color-3: rgba(255, 255, 255, 0.2);
 
+        --primary-color-text: #ffd700;
+        --secondary-color-text: #ff0000;
+        --accent-color: #00ffcc;
+
+        --btn-text-color: #fff;
+
+        --btn-telegram-gradient: linear-gradient(to right, #0ebeff, #03dac6);
+        --btn-viber-gradient: linear-gradient(to right, #7f00ff, #e100ff);
+        --btn-learn-gradient: linear-gradient(to right, #ff416c, #ff4b2b);
+
+        --btn-primary-start: #f12711;
+        --btn-primary-end: #f5af19;
+        --btn-primary-shadow: rgba(241, 39, 17, 0.8);
+
+
+        --text-light: #fff;
+        --text-medium: #ddd;
+        --text-dark: #888;
+
+        --heading-font: 'Orbitron', sans-serif;
+        --body-font: 'Roboto', sans-serif;
+        --fallback-font: 'Segoe UI', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--body-font), var(--fallback-font);
+      color: var(--text-medium);
+      text-align: center;
+      padding: 0;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      /* --- Pure CSS Rain Background --- */
+      background-color: var(--bg-base-color);
+      background-image:
+        linear-gradient(to bottom, var(--bg-rain-color-1) 0%, transparent 20%, transparent 100%),
+        linear-gradient(to bottom, var(--bg-rain-color-2) 0%, transparent 20%, transparent 100%),
+        linear-gradient(to bottom, var(--bg-rain-color-3) 0%, transparent 20%, transparent 100%);
+      background-size: 1px 100px, 1.5px 120px, 2px 150px;
+      background-repeat: repeat-y;
+      background-position: 0 0, 50px 0, 120px 0;
+      animation: rain 10s linear infinite,
+                 rain 15s linear infinite,
+                 rain 20s linear infinite;
+    }
+
+    @keyframes rain {
+      from { background-position-y: 0; }
+      to { background-position-y: 100%; }
+    }
+
+
+    .container {
+        padding: 20px 10px;
+        margin: 0 auto;
+        max-width: 500px;
+        flex-grow: 1;
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-section {
+        margin-bottom: 40px;
+    }
+
+
+    .banner-container {
+      position: relative;
+      margin-bottom: 30px;
+      border-radius: 16px;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 0 35px 6px rgba(255, 0, 70, 0.7),
+                  0 0 20px rgba(255, 217, 0, 0.7),
+                  0 0 10px rgba(255, 0, 200, 0.5);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+
+    .banner {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 16px;
+      display: block;
+    }
+
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    h1 {
+      font-family: var(--heading-font), var(--fallback-font);
+      font-size: clamp(1.3rem, 6vw, 2.8rem);
+      color: var(--primary-color-text);
+      text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light);
+      animation: pulseText 2.5s infinite alternate ease-in-out;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+     @keyframes pulseText {
+        0% { transform: scale(1); opacity: 1; text-shadow: 0 0 18px var(--secondary-color-text), 0 0 8px var(--text-light); }
+        50% { transform: scale(1.03); opacity: 0.9; text-shadow: 0 0 25px var(--secondary-color-text), 0 0 12px var(--text-light); }
+        100% { transform: scale(1); } /* Removed box-shadow from h1 animation */
+    }
+
+
+    p {
+      font-family: var(--body-font), var(--fallback-font);
+      font-size: 1.05rem;
+      color: var(--text-medium);
+      margin-bottom: 15px;
+    }
+
+    .bonus-section {
+      background: rgba(44, 44, 44, 0.8);
+      border: 2px solid var(--accent-color);
+      padding: 18px;
+      margin: 35px auto;
+      max-width: 480px;
+      border-radius: 12px;
+      color: var(--accent-color);
+      font-weight: bold;
+      font-size: 1.25rem;
+      animation: glowBorder 2s ease-in-out infinite alternate;
+      box-shadow: 0 0 10px var(--accent-color);
+      text-shadow: 0 0 6px rgba(0, 255, 204, 0.6);
+    }
+    @keyframes glowBorder {
+        from { box-shadow: 0 0 10px var(--accent-color), 0 0 0px rgba(0, 255, 204, 0.3); }
+        to { box-shadow: 0 2px 30px var(--accent-color), 0 2px 20px rgba(0, 255, 204, 0.6); }
+    }
+
+
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-bottom: 40px;
+    }
+
+    a.btn {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 380px;
+      padding: 18px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--btn-text-color);
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Common Button Hover/Active Effects */
+    a.btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.25);
+        transform: skewX(-30deg);
+        transition: all 0.5s ease;
+        z-index: 1;
+    }
+    a.btn:hover::before { left: 100%; }
+
+    a.btn:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(0,0,0,0.6);
+        filter: brightness(1.2);
+        z-index: 2;
+    }
+    a.btn:active {
+        transform: translateY(0);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        filter: brightness(0.8);
+        transition: all 0.1s ease;
+    }
+
+
+    /* --- Individual Button Styles and Animations --- */
+
+    /* Primary Button (Telegram) */
+    .btn-primary {
+        background-color: #f12711;
+        background: linear-gradient(to right, var(--btn-primary-start), var(--btn-primary-end));
+        font-size: 1.3rem;
+        padding: 22px 35px;
+        font-weight: 900;
+        color: var(--btn-text-color);
+        animation: pulsePrimary 2s infinite alternate ease-in-out;
+        box-shadow: 0 0 15px var(--btn-primary-shadow);
+    }
+    @keyframes pulsePrimary {
+        0% { transform: scale(1); box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); }
+        50% { transform: scale(1.03); box-shadow: 0 0 25px var(--btn-primary-shadow), 0 0 15px rgba(241, 39, 17, 0.6); }
+        100% { transform: scale(1); box-shadow: 0 0 15px var(--btn-primary-shadow), 0 0 0px rgba(241, 39, 17, 0.4); } /* Added box-shadow back for the pulse effect */
+    }
+
+    /* Secondary Buttons */
+    .btn-secondary {
+         color: var(--btn-text-color);
+         background-color: #3a7bd5;
+         background: linear-gradient(to right, #3a7bd5, #00d2ff);
+         box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+    }
+
+    /* Viber Button (Overrides default secondary gradient) */
+    .btn-viber {
+         background-color: #7f00ff;
+         background: var(--btn-viber-gradient);
+         box-shadow: 0 4px 15px rgba(255, 0, 200, 0.35);
+         animation: subtleWiggleRotation 2.5s infinite ease-in-out;
+    }
+    @keyframes subtleWiggleRotation {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(0.6deg); }
+      50% { transform: rotate(-0.6deg); }
+      75% { transform: rotate(0.6deg); }
+    }
+
+    /* Learn More Button (Overrides default secondary gradient) */
+    .btn-learn {
+         background-color: #ff416c;
+         background: var(--btn-learn-gradient);
+         box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5);
+         animation: subtleBounce 2s infinite ease-in-out;
+    }
+    @keyframes subtleBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px 10px;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* --- Responsive Adjustments --- */
+    @media (max-width: 550px) {
+        .container { padding: 15px 10px; }
+        .subtitle { font-size: 1.1rem; padding: 0 5px; }
+        a.btn { font-size: 1.05rem; padding: 16px 25px; }
+        .btn-primary { font-size: 1.2rem; padding: 18px 28px; }
+        .btn-secondary { font-size: 1.05rem; }
+        .bonus-section { font-size: 1.1rem; padding: 15px; max-width: 400px; }
+        .cta-buttons { gap: 15px; }
+    }
+    @media (max-width: 400px) {
+         .container { padding: 15px 8px; }
+         .subtitle { font-size: 1rem; }
+         a.btn { font-size: 1rem; padding: 14px 20px; }
+         .btn-primary { font-size: 1.1rem; padding: 16px 20px; font-weight: bold; }
+         .btn-secondary { font-size: 1rem; }
+         .bonus-section { font-size: 1rem; padding: 12px; max-width: 320px; }
+    }
+
+
+     /* Ensure footer is at the bottom */
+     body {
+         display: flex;
+         flex-direction: column;
+         min-height: 100vh;
+     }
+     .container {
+         flex-grow: 1;
+     }
+
+  </style>
 </head>
 <body>
 
-  <main class="container">
-    <div class="hero-section">
-        <div class="banner-container">
-            <!-- Changed back to img tag for GIF -->
-            <!-- Assuming your GIF file is named done.gif -->
-            <img src="done.gif" alt="KWIN99 Mobile Banner" class="banner" />
-        </div>
+  <div class="container">
 
-        <h1>♕ KWIN99 ဂိမ်းခန်းရှယ်</h1>
+      <div class="hero-section">
+          <!-- 🚀 Animated Banner -->
+          <div class="banner-container">
+            <img src="done.gif" alt="BigWin777 Mobile Banner" class="banner" />
+          </div>
 
-        <p class="subtitle">📱 ခုပဲ ဆော့လိုက်ပါ - ရှမ်းကိုးမီး ၊ ဘူကြီး ၊ စလော့
-         100% ယုံကြည်စိတ်ချ ✦ ငွေသွင်းငွေထုတ် မြန်ဆန် ✦ 𝟮𝟰/𝳰 ဝန်ဆောင်မှု</p> <!-- Corrected 24/7 character -->
+          <h1>♕ KWIN99 ♠ ဂိမ်ခန်းရှယ်</h1>
 
-        <div class="cta-buttons">
-          <a href="https://t.me/kw99cs" class="btn btn-primary btn-telegram">💬 တယ်လီဂရမ် မှ အကောင့်ဖွင့်မယ်</a>
-          <a href="viber://chat?number=+959953108085" class="btn btn-secondary btn-viber">📲 ဗိုက်ဗာ မှ ဆက်သွယ်မယ်</a>
-          <a href="https://beacons.ai/kwin99" class="btn btn-secondary btn-learn">📖 အသေးစိတ်ကြည့်မယ်</a>
-        </div>
+          <p>📱 ခုပဲ ဆော့လိုက်ပါ - ရှမ်းကိုးမီး ၊ ဘူကြီး ၊ စလော့
+           100% ယုံကြည်စိတ်ချ ✦ ငွေသွင်းငွေထုတ် မြန်ဆန် ✦ 𝟮𝟰/𝟳 ဝန်ဆောင်မှု</p>
 
-        <div class="bonus-section">
-          🎁 နေ့စဉ် Bonus 3 ကြိမ် ➠ 15% ➠ 10% ➠ 5%
-        </div>
-    </div>
-  </main>
+           <div class="cta-buttons">
+              <a href="https://t.me/kw99cs" class="btn btn-primary btn-telegram">💬 တယ်လီဂရမ် မှ အကောင့်ဖွင့်မယ်</a>
+              <a href="viber://chat?number=+959953108085" class="btn btn-secondary btn-viber">📲 ဗိုက်ဗာ မှ ဆက်သွယ်မယ် </a>
+              <a href="https://beacons.ai/kwin99" class="btn btn-secondary btn-learn">📖 အသေးစိတ်ကြည့်မယ်</a>
+           </div>
+
+           <div class="bonus-section">🎁 နေ့စဉ် Bonus 3 ကြိမ် ➠ 15% ➠ 10% ➠ 5%</div>
+      </div>
+
+
+  </div>
 
   <footer>© 2025 KWIN99 • 18+ Only • Gamble Responsibly</footer>
 
